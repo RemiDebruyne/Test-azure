@@ -1,0 +1,35 @@
+﻿@page "/"
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient Http
+
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+@{
+    if (Users.Count == 0)
+    {
+
+        <p>ksksksk</p>
+    }
+
+    foreach (var user in Users)
+    {
+        <p>@user.Name</p>
+    }
+}
+
+
+@code {
+
+    public User User { get; set; } = new();
+    public List<User> Users { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Pizzas = pizzaService.GetAll();
+        Users = await Http.GetFromJsonAsync<List<User>>("http://localhost:80/User");
+    }
+}
