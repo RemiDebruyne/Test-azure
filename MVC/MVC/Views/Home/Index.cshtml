@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using System.Net.Http
+@using MVC.Models
+
+
+@foreach (User user in @Model.User)
+{
+    <p>
+        <span>@user.Name</span><br />
+    </p>
+}
